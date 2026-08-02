@@ -1,0 +1,29 @@
+name: HeroCraft Auto Craft & Destroy
+
+on:
+  schedule:
+    # 每小时整点触发
+    - cron: '0 * * * *'
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run HeroCraft auto script (55 min)
+        run: python herocraft_auto.py --duration 3300
+        env:
+          HC_LOGIN: ${{ secrets.HC_LOGIN }}
+          HC_PASSWORD: ${{ secrets.HC_PASSWORD }}
