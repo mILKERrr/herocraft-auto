@@ -2,14 +2,14 @@ name: HeroCraft Auto Craft & Destroy
 
 on:
   schedule:
-    # 每30分钟触发（GitHub cron 可能延迟/跳过，多设一次提高命中率）
-    - cron: '0,30 * * * *'
+    # 每15分钟触发（GitHub cron 经常跳过，多设提高命中率）
+    - cron: '0,15,30,45 * * * *'
   workflow_dispatch: # 允许手动触发
 
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 15
 
     steps:
       - uses: actions/checkout@v4
@@ -22,8 +22,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run HeroCraft auto script (25 min)
-        run: python herocraft_auto.py --duration 1500
+      - name: Run HeroCraft auto script (12 min)
+        run: python herocraft_auto.py --duration 720
         env:
           HC_LOGIN: ${{ secrets.HC_LOGIN }}
           HC_PASSWORD: ${{ secrets.HC_PASSWORD }}
