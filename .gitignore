@@ -1,0 +1,13 @@
+# 临时调试脚本（含凭据，不上传）
+check_status.py
+deep_check.py
+explore_apis.py
+extract_js_apis.py
+test_all_apis.py
+test_post_apis.py
+test_shop_battle.py
+check_contact.py
+
+# Python
+__pycache__/
+*.pyc
